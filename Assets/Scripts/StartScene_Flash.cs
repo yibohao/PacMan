@@ -20,6 +20,10 @@ public class StartScene_Flash : MonoBehaviour
     void Update()
     {
         title.color = clerp(textColor, Color.white,2f);
+        for (int i=0; i < borders.Length; i++)
+        {
+            borders[i].color = clerp(Color.white, Color.blue, 20f);
+        }
     }
 
     Color clerp(Color color1, Color color2, float speed) => Color.Lerp(color1, color2, Mathf.Sin(Time.time) * speed);
