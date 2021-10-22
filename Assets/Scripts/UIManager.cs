@@ -38,10 +38,36 @@ public class UIManager : MonoBehaviour
         //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void QuitGame()
     {
-        //add things when level 1 ui control
+        Debug.Log("Go back to menu");
+        SceneManager.LoadScene(0);
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
 
+    Button quitgame;
+    GameObject[] lifeIndicator = new GameObject[3];
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        //add things when level 1 ui control
+        if(scene.buildIndex == 1)
+        {
+            //quit button
+            quitgame = GameObject.Find("Quit").GetComponent<Button>();
+            quitgame.onClick.AddListener(QuitGame);
+
+            //get life indicator component
+            for(int i = 0; i < lifeIndicator.Length; i++)
+            {
+                lifeIndicator[i] = GameObject.Find("Life-indicator"+i).GetComponent<GameObject>();
+            }
+        }
+    }
+
+    int life = 3;
+    public void LifeIndicator(int life)
+    {
+        //calculate life
+    }
 }
